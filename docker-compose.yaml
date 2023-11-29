@@ -1,0 +1,8 @@
+services:
+  vod-server:
+    build: ../nginx-vod-module-docker
+    ports:
+      - "3030:80"
+    volumes:
+      - ./examples/videos:/opt/static/videos
+      - ./examples/nginx.conf:/usr/local/nginx/conf/nginx.conf
