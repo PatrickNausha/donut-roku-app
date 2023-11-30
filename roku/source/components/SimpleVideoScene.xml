@@ -16,12 +16,15 @@
       wrap="true"
       translation="[300,600]" />
 
-    <Overhang
-      showClock="true"
-      title="Simple-Video-Player" />
+    <Video
+      id="VideoHls"
+      width="1920"
+      height="1080"
+      translation="[0,0]"
+      visible="false"/>
 
     <Video
-      id="Video"
+      id="VideoDash"
       width="1920"
       height="1080"
       translation="[0,0]"

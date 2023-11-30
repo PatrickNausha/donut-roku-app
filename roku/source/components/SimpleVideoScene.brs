@@ -1,13 +1,10 @@
-' ********** Copyright 2016 Roku Corp.  All Rights Reserved. **********
-
-' 1st function that runs for the scene component on channel startup
 sub init()
-    'To see print statements/debug info, telnet on port 8089
     m.Image = m.top.findNode("Image")
     m.ButtonGroup = m.top.findNode("ButtonGroup")
     m.Details = m.top.findNode("Details")
     m.Title = m.top.findNode("Title")
-    m.Video = m.top.findNode("Video")
+    m.VideoHls = m.top.findNode("VideoHls")
+    m.VideoDash = m.top.findNode("VideoDash")
     m.Warning = m.top.findNode("WarningDialog")
     m.Exiter = m.top.findNode("Exiter")
     setContent()
@@ -18,9 +15,13 @@ end sub
 sub onButtonSelected()
     'Ok'
     if m.ButtonGroup.buttonSelected = 0
-        m.Video.visible = "true"
-        m.Video.control = "play"
-        m.Video.setFocus(true)
+        m.VideoHls.visible = "true"
+        m.VideoHls.control = "play"
+        m.VideoHls.setFocus(true)
+    else if m.ButtonGroup.buttonSelected = 1
+        m.VideoDash.visible = "true"
+        m.VideoDash.control = "play"
+        m.VideoDash.setFocus(true)
         'Exit button pressed'
     else
         m.Exiter.control = "RUN"
@@ -29,42 +30,30 @@ end sub
 
 'Set your information here
 sub setContent()
-
-    'Change the image
-    'm.Image.uri="pkg:/images/DanGilbert.jpg"
-    'ContentNode = CreateObject("roSGNode", "ContentNode")
-    'ContentNode.streamFormat = "mp4"
-    'ContentNode.url = "http://video.ted.com/talks/podcast/DanGilbert_2004_480.mp4"
-    'ContentNode.ShortDescriptionLine1 = "Dan Gilbert asks, Why are we happy?"
-    'ContentNode.Description = "Harvard psychologist Dan Gilbert says our beliefs about what will make us happy are often wrong -- a premise he supports with intriguing research, and explains in his accessible and unexpectedly funny book, Stumbling on Happiness."
-    'ContentNode.StarRating = 80
-    'ContentNode.Length = 1280
-    'ContentNode.Title = "Dan Gilbert asks, Why are we happy?"
-
     m.Image.uri = "pkg:/images/CraigVenter-2008.jpg"
-    ContentNode = CreateObject("roSGNode", "ContentNode")
-    ContentNode.streamFormat = "hls"
-    ContentNode.url = "http://192.168.0.116:3030/hls/devito,360p.mp4,480p.mp4,720p.mp4,.en_US.vtt,.urlset/master.m3u8"
-    ContentNode.ShortDescriptionLine1 = "Can we create new life out of our digital universe?"
-    ContentNode.Description = "He walks the TED2008 audience through his latest research into fourth-generation fuels -- biologically created fuels with CO2 as their feedstock. His talk covers the details of creating brand-new chromosomes using digital technology, the reasons why we would want to do this, and the bioethics of synthetic life. A fascinating Q and A with TED's Chris Anderson follows."
-    ContentNode.StarRating = 80
-    ContentNode.Length = 1972
-    ContentNode.Title = "Craig Venter asks, Can we create new life out of our digital universe?"
+    HlsContentNode = CreateObject("roSGNode", "ContentNode")
+    HlsContentNode.streamFormat = "hls"
+    HlsContentNode.url = "http://192.168.0.116:3030/hls/devito,360p.mp4,480p.mp4,720p.mp4,.en_US.vtt,.urlset/master.m3u8"
+    HlsContentNode.ShortDescriptionLine1 = "Can we create new life out of our digital universe?"
+    HlsContentNode.Description = "He walks the TED2008 audience through his latest research into fourth-generation fuels -- biologically created fuels with CO2 as their feedstock. His talk covers the details of creating brand-new chromosomes using digital technology, the reasons why we would want to do this, and the bioethics of synthetic life. A fascinating Q and A with TED's Chris Anderson follows."
+    HlsContentNode.StarRating = 80
+    HlsContentNode.Length = 1972
+    HlsContentNode.Title = "Craig Venter asks, Can we create new life out of our digital universe?"
 
-    'm.Image.uri="pkg:/images/BigBuckBunny.jpg"
-    'ContentNode = CreateObject("roSGNode", "ContentNode")
-    'ContentNode.streamFormat = "mp4"
-    'ContentNode.url = "http://video.ted.com/talks/podcast/CraigVenter_2008_480.mp4"
-    'ContentNode.ShortDescriptionLine1 = "Big Buck Bunny"
-    'ContentNode.Description = "Big Buck Bunny is being served using a Wowza server running on Amazon EC2 cloud services. The video is transported via HLS HTTP Live Streaming. A team of small artists from the Blender community produced this open source content..."
-    'ContentNode.StarRating = 80
-    'ContentNode.Length = 600
-    'ContentNode.Title = "Big Buck Bunny"
+    DashContentNode = CreateObject("roSGNode", "ContentNode")
+    DashContentNode.streamFormat = "dash"
+    DashContentNode.url = "http://192.168.0.116:3030/dash/devito,360p.mp4,480p.mp4,720p.mp4,.en_US.vtt,.urlset/manifest.mpd"
+    DashContentNode.ShortDescriptionLine1 = "Can we create new life out of our digital universe?"
+    DashContentNode.Description = "He walks the TED2008 audience through his latest research into fourth-generation fuels -- biologically created fuels with CO2 as their feedstock. His talk covers the details of creating brand-new chromosomes using digital technology, the reasons why we would want to do this, and the bioethics of synthetic life. A fascinating Q and A with TED's Chris Anderson follows."
+    DashContentNode.StarRating = 80
+    DashContentNode.Length = 1972
+    DashContentNode.Title = "Craig Venter asks, Can we create new life out of our digital universe?"
 
-    m.Video.content = ContentNode
+    m.VideoHls.content = HlsContentNode
+    m.VideoDash.content = DashContentNode
 
     'Change the buttons
-    Buttons = ["Play", "Exit"]
+    Buttons = ["Play HLS", "Play DASH", "Exit"]
     m.ButtonGroup.buttons = Buttons
 
     'Change the details
@@ -86,9 +75,9 @@ function onKeyEvent(key as string, press as boolean) as boolean
                 m.Warning.visible = false
                 m.ButtonGroup.setFocus(true)
                 return true
-            else if m.Video.visible
-                m.Video.control = "stop"
-                m.Video.visible = false
+            else if m.VideoHls.visible
+                m.VideoHls.control = "stop"
+                m.VideoHls.visible = false
                 m.ButtonGroup.setFocus(true)
                 return true
             else
