@@ -50,15 +50,11 @@ sub setContent()
     m.VideoDash.content = DashContentNode
 
     'Change the buttons
-    Buttons = ["Play HLS", "Play DASH", "Exit"]
+    Buttons = ["Play HLS", "Play DASH"]
     m.ButtonGroup.buttons = Buttons
 
-    'Change the details
-    'm.Title.text = "Dan Gilbert asks, Why are we happy?"
-    'm.Details.text = "Harvard psychologist Dan Gilbert says our beliefs about what will make us happy are often wrong -- a premise he supports with intriguing research, and explains in his accessible and unexpectedly funny book, Stumbling on Happiness."
-
-    m.Title.text = "Craig Venter asks, Can we create new life out of our digital universe?"
-    m.Details.text = "He walks the TED2008 audience through his latest research into fourth-generation fuels -- biologically created fuels with CO2 as their feedstock. His talk covers the details of creating brand-new chromosomes using digital technology, the reasons why we would want to do this, and the bioethics of synthetic life. A fascinating Q and A with TED's Chris Anderson follows."
+    m.Title.text = "Watch this donut spin!"
+    m.Details.text = "In 2022 I followed Blender Guru's Donut Tutorial and the video above is the result. This isn't a very involved Roku Channel, but it was a chance to showcase a small amount of BrightScript/SceneGraph development."
 
 end sub
 
