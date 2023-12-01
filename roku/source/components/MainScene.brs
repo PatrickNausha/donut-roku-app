@@ -77,6 +77,11 @@ function onKeyEvent(key as string, press as boolean) as boolean
                 m.VideoHls.visible = false
                 m.ButtonGroup.setFocus(true)
                 return true
+            else if m.VideoDash.visible
+                m.VideoDash.control = "stop"
+                m.VideoDash.visible = false
+                m.ButtonGroup.setFocus(true)
+                return true
             else
                 return false
             end if
