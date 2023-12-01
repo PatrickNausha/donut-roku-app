@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="SimpleVideoScene" extends="Scene">
+<component name="MainScene" extends="Scene">
   <children>
     <Label id="Title" font="font:LargeBoldSystemFont" translation="[750, 250]" width="850" />
     <ButtonGroup id="ButtonGroup" translation="[800,325]"/>
@@ -27,8 +27,6 @@
       title="Warning"
       message="PUT A WARNING MESSAGE HERE"
       visible="false" />
-
-    <Exiter id="Exiter"/>
   </children>
-  <script type="text/brightscript" uri="pkg:/components/SimpleVideoScene.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/MainScene.brs"/>
 </component>
