@@ -27,7 +27,7 @@ end sub
 
 'Set your information here
 sub setContent()
-    m.Image.uri = "pkg:/images/CraigVenter-2008.jpg"
+    m.Image.uri = "pkg:/images/donut-thumbnail.png"
     HlsContentNode = CreateObject("roSGNode", "ContentNode")
     HlsContentNode.streamFormat = "hls"
     HlsContentNode.url = "http://192.168.0.116:3030/hls/devito,360p.mp4,480p.mp4,720p.mp4,.en_US.vtt,.urlset/master.m3u8"
