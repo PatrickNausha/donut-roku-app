@@ -12,12 +12,13 @@ sub init()
 end sub
 
 sub onButtonSelected()
-    'Ok'
-    if m.ButtonGroup.buttonSelected = 0
+    hlsButtonIndex = 0
+    dashButtonIndex = 1
+    if m.ButtonGroup.buttonSelected = hlsButtonIndex
         m.VideoHls.visible = "true"
         m.VideoHls.control = "play"
         m.VideoHls.setFocus(true)
-    else if m.ButtonGroup.buttonSelected = 1
+    else if m.ButtonGroup.buttonSelected = dashButtonIndex
         m.VideoDash.visible = "true"
         m.VideoDash.control = "play"
         m.VideoDash.setFocus(true)
