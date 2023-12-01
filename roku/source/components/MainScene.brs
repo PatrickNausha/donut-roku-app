@@ -6,7 +6,6 @@ sub init()
     m.VideoHls = m.top.findNode("VideoHls")
     m.VideoDash = m.top.findNode("VideoDash")
     m.Warning = m.top.findNode("WarningDialog")
-    m.Exiter = m.top.findNode("Exiter")
     setContent()
     m.ButtonGroup.setFocus(true)
     m.ButtonGroup.observeField("buttonSelected", "onButtonSelected")
@@ -22,9 +21,6 @@ sub onButtonSelected()
         m.VideoDash.visible = "true"
         m.VideoDash.control = "play"
         m.VideoDash.setFocus(true)
-        'Exit button pressed'
-    else
-        m.Exiter.control = "RUN"
     end if
 end sub
 
