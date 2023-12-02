@@ -27,24 +27,23 @@ end sub
 
 'Set your information here
 sub setContent()
+    description = "This is a spinning donut. The donut has pink frosting and sprinkles."
+    shortDescriptionLine1 = "This is a spinning donut. The donut has pink frosting and sprinkles."
+
     m.Image.uri = "pkg:/images/donut-thumbnail.png"
     HlsContentNode = CreateObject("roSGNode", "ContentNode")
     HlsContentNode.streamFormat = "hls"
-    HlsContentNode.url = "http://192.168.0.116:3030/hls/devito,360p.mp4,480p.mp4,720p.mp4,.en_US.vtt,.urlset/master.m3u8"
-    HlsContentNode.ShortDescriptionLine1 = "Can we create new life out of our digital universe?"
-    HlsContentNode.Description = "He walks the TED2008 audience through his latest research into fourth-generation fuels -- biologically created fuels with CO2 as their feedstock. His talk covers the details of creating brand-new chromosomes using digital technology, the reasons why we would want to do this, and the bioethics of synthetic life. A fascinating Q and A with TED's Chris Anderson follows."
-    HlsContentNode.StarRating = 80
-    HlsContentNode.Length = 1972
-    HlsContentNode.Title = "Craig Venter asks, Can we create new life out of our digital universe?"
+    HlsContentNode.url = "http://patrick-video-streaming-service.eastus.azurecontainer.io/hls/donut,360p.mp4,480p.mp4,720p.mp4,1080p.mp4,.urlset/master.m3u8"
+    HlsContentNode.ShortDescriptionLine1 = shortDescriptionLine1
+    HlsContentNode.Description = description
+    HlsContentNode.Title = "Spinning Donut"
 
     DashContentNode = CreateObject("roSGNode", "ContentNode")
     DashContentNode.streamFormat = "dash"
-    DashContentNode.url = "http://192.168.0.116:3030/dash/devito,360p.mp4,480p.mp4,720p.mp4,.en_US.vtt,.urlset/manifest.mpd"
-    DashContentNode.ShortDescriptionLine1 = "Can we create new life out of our digital universe?"
-    DashContentNode.Description = "He walks the TED2008 audience through his latest research into fourth-generation fuels -- biologically created fuels with CO2 as their feedstock. His talk covers the details of creating brand-new chromosomes using digital technology, the reasons why we would want to do this, and the bioethics of synthetic life. A fascinating Q and A with TED's Chris Anderson follows."
-    DashContentNode.StarRating = 80
-    DashContentNode.Length = 1972
-    DashContentNode.Title = "Craig Venter asks, Can we create new life out of our digital universe?"
+    DashContentNode.url = "http://patrick-video-streaming-service.eastus.azurecontainer.io/dash/donut,360p.mp4,480p.mp4,720p.mp4,1080p.mp4,.urlset/manifest.mpd"
+    DashContentNode.ShortDescriptionLine1 = shortDescriptionLine1
+    DashContentNode.Description = description
+    DashContentNode.Title = "Spinning Donut"
 
     m.VideoHls.content = HlsContentNode
     m.VideoDash.content = DashContentNode
@@ -55,7 +54,6 @@ sub setContent()
 
     m.Title.text = "Watch this donut spin!"
     m.Details.text = "In 2022 I followed Blender Guru's Donut Tutorial and the video above is the result. This isn't a very involved Roku Channel, but it was a chance to showcase a small amount of BrightScript/SceneGraph development."
-
 end sub
 
 ' Called when a key on the remote is pressed
